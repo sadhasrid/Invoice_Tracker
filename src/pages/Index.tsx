@@ -52,19 +52,21 @@ const Index = () => {
             freelancers and small businesses.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/dashboard">
+            <Link to="/signup">
               <Button size="lg" className="bg-white text-primary hover:bg-white/90">
                 Get Started
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
             </Link>
-            <Button
-              size="lg"
-              variant="outline"
-              className="bg-white/10 text-white border-white/20 hover:bg-white/20"
-            >
-              Learn More
-            </Button>
+            <Link to="/login">
+              <Button
+                size="lg"
+                variant="outline"
+                className="bg-white/10 text-white border-white/20 hover:bg-white/20"
+              >
+                Sign In
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -113,7 +115,7 @@ const Index = () => {
             Join thousands of freelancers and small businesses who trust our
             platform for their financial operations.
           </p>
-          <Link to="/dashboard">
+          <Link to="/signup">
             <Button size="lg">
               Start Managing Invoices
               <ArrowRight className="ml-2 h-4 w-4" />

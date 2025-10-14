@@ -11,8 +11,10 @@ export const DashboardStats = ({ invoices }: DashboardStatsProps) => {
     .filter((inv) => inv.status === "paid")
     .reduce((sum, inv) => sum + inv.totalAmount, 0);
 
+  const isPendingLike = (status: string) => status === "pending" || status === "unpaid" || status === "overdue";
+
   const pendingAmount = invoices
-    .filter((inv) => inv.status === "unpaid" || inv.status === "overdue")
+    .filter((inv) => isPendingLike(inv.status))
     .reduce((sum, inv) => sum + inv.totalAmount, 0);
 
   const overdueAmount = invoices
@@ -36,7 +38,7 @@ export const DashboardStats = ({ invoices }: DashboardStatsProps) => {
       title: "Pending Payments",
       value: `₹${pendingAmount.toLocaleString("en-IN")}`,
       icon: Clock,
-      trend: `${invoices.filter((inv) => inv.status === "unpaid").length} invoices`,
+      trend: `${invoices.filter((inv) => isPendingLike(inv.status)).length} invoices`,
       color: "text-chart-3",
       bgColor: "bg-chart-3/10",
     },
@@ -61,17 +63,17 @@ export const DashboardStats = ({ invoices }: DashboardStatsProps) => {
   return (
     <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4 mb-8">
       {stats.map((stat, index) => (
-        <Card key={index} className="overflow-hidden transition-all hover:shadow-lg">
+        <Card key={index} className="overflow-hidden transition-all hover:shadow-lg border-muted/60 hover:border-muted">
           <CardContent className="p-6">
             <div className="flex items-start justify-between">
               <div className="space-y-2">
                 <p className="text-sm font-medium text-muted-foreground">
                   {stat.title}
                 </p>
-                <h3 className="text-2xl font-bold">{stat.value}</h3>
+                <h3 className="text-3xl font-semibold tracking-tight">{stat.value}</h3>
                 <p className={`text-xs ${stat.color}`}>{stat.trend}</p>
               </div>
-              <div className={`${stat.bgColor} ${stat.color} p-3 rounded-lg`}>
+              <div className={`${stat.bgColor} ${stat.color} p-3 rounded-xl shadow-sm`}>
                 <stat.icon className="h-5 w-5" />
               </div>
             </div>

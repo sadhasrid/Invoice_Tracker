@@ -9,6 +9,8 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Invoice } from "@/pages/Dashboard";
 import { Calendar, MoreVertical, Trash2, CheckCircle2 } from "lucide-react";
+import { useState } from "react";
+import InvoiceDetailsDialog from "./InvoiceDetailsDialog";
 
 interface InvoiceCardProps {
   invoice: Invoice;
@@ -34,8 +36,9 @@ export const InvoiceCard = ({
     onUpdateStatus(invoice.id, "overdue");
   }
 
+  const [open, setOpen] = useState(false);
   return (
-    <Card className="p-4 hover:shadow-md transition-shadow">
+    <Card className="p-4 hover:shadow-md transition-shadow" onClick={() => setOpen(true)}>
       <div className="flex items-start justify-between">
         <div className="flex-1 space-y-3">
           <div className="flex items-start justify-between">
@@ -117,6 +120,16 @@ export const InvoiceCard = ({
           </div>
         </div>
       </div>
+      <InvoiceDetailsDialog open={open} onOpenChange={setOpen} invoice={{
+        id: invoice.id,
+        client_name: invoice.clientName,
+        invoiceNumber: invoice.invoiceNumber,
+        due_date: invoice.dueDate,
+        status: invoice.status,
+        amount: invoice.amount,
+        tax_amount: invoice.taxAmount,
+        total_amount: invoice.totalAmount,
+      }} />
     </Card>
   );
 };

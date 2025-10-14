@@ -1,5 +1,6 @@
 import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 import { AppSidebar } from './AppSidebar';
+import { ProfileNotifications } from './ProfileNotifications';
 import { useAuth } from '@/contexts/AuthContext';
 
 export const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
@@ -12,9 +13,7 @@ export const DashboardLayout = ({ children }: { children: React.ReactNode }) => 
         <div className="flex-1 flex flex-col">
           <header className="h-16 border-b bg-card flex items-center justify-between px-6">
             <SidebarTrigger />
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-muted-foreground">{user?.email}</span>
-            </div>
+            <ProfileNotifications />
           </header>
           <main className="flex-1 p-6 bg-background">
             {children}

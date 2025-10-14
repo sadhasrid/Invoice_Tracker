@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { FileText, Loader2 } from 'lucide-react';
+import LoadingScreen from '@/components/ui/loading-screen';
 import { toast } from '@/hooks/use-toast';
 
 const SignUp = () => {
@@ -58,6 +59,7 @@ const SignUp = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      {loading && <LoadingScreen message="Creating your account" />}
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <div className="flex items-center justify-center mb-4">

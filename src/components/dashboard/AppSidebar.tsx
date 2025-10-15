@@ -1,4 +1,4 @@
-import { FileText, LayoutDashboard, Plus, LogOut, Settings, CalendarDays } from 'lucide-react';
+import { FileText, LayoutDashboard, Plus, LogOut, Settings, BarChart3, Bell, CalendarDays } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
 import {
   Sidebar,
@@ -14,14 +14,15 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { useAuth } from '@/contexts/AuthContext';
-import { cn } from '@/lib/utils';
 
 const menuItems = [
   { title: 'Dashboard', url: '/dashboard', icon: LayoutDashboard },
   { title: 'Invoices', url: '/invoices', icon: FileText },
   { title: 'Create Invoice', url: '/create-invoice', icon: Plus },
+  { title: 'Management', url: '/management', icon: BarChart3 },
+  { title: 'Supplier Matrix', url: '/suppliers', icon: BarChart3 },
+  { title: 'Alerts & Overdue', url: '/alerts', icon: Bell },
   { title: 'Calendar', url: '/calendar', icon: CalendarDays },
-  { title: 'Settings', url: '/settings', icon: Settings },
 ];
 
 export function AppSidebar() {
@@ -38,25 +39,14 @@ export function AppSidebar() {
   };
 
   return (
-    <Sidebar collapsible="icon" className="border-r border-border/50 bg-card/50 backdrop-blur-sm">
-      <SidebarHeader className={cn("py-4", isCollapsed ? 'items-center' : 'px-4')}>
-        {!isCollapsed ? (
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shadow-sm">
-              <FileText className="w-4 h-4 text-primary-foreground" />
-            </div>
-            <span className="font-semibold">InvoiceTracker</span>
-          </div>
-        ) : (
-          <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center shadow-sm">
-            <FileText className="w-4 h-4 text-primary-foreground" />
-          </div>
-        )}
+    <Sidebar collapsible="icon">
+      <SidebarHeader className={isCollapsed ? 'items-center' : ''}>
+        {!isCollapsed && <div className="px-2 text-sm font-semibold tracking-wide">Navigation</div>}
       </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupContent>
-            <SidebarMenu className={cn("gap-1", !isCollapsed && "px-2")}>
+            <SidebarMenu>
               {menuItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <NavLink to={item.url} end>
@@ -64,10 +54,6 @@ export function AppSidebar() {
                       <SidebarMenuButton
                         isActive={active}
                         tooltip={isCollapsed ? item.title : undefined}
-                        className={cn(
-                          "rounded-lg transition-all",
-                          active && "bg-primary text-primary-foreground shadow-sm font-medium"
-                        )}
                       >
                         <item.icon />
                         {!isCollapsed && <span>{item.title}</span>}
@@ -80,14 +66,10 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-      <SidebarFooter className="p-4 border-t border-border/50">
+      <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton 
-              onClick={handleLogout} 
-              tooltip={isCollapsed ? 'Logout' : undefined}
-              className="hover:bg-destructive/10 hover:text-destructive transition-colors"
-            >
+            <SidebarMenuButton onClick={handleLogout} tooltip={isCollapsed ? 'Logout' : undefined}>
               <LogOut />
               {!isCollapsed && <span>Logout</span>}
             </SidebarMenuButton>

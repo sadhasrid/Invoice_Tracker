@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, FileText, TrendingUp, Bell, Shield, Zap, CheckCircle } from "lucide-react";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
+  return <div className="min-h-screen bg-gradient-to-br from-background via-background to-secondary/20">
       {/* Header */}
       <header className="border-b border-border/40 bg-card/80 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -35,10 +33,7 @@ const Index = () => {
       {/* Hero Section */}
       <section className="container mx-auto px-4 py-20 text-center">
         <div className="max-w-4xl mx-auto">
-          <div className="inline-flex items-center gap-2 bg-accent text-accent-foreground px-4 py-2 rounded-full text-sm font-medium mb-8 shadow-sm">
-            <Zap className="w-4 h-4" />
-            Professional Invoice Management
-          </div>
+          
           <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
             Manage Your Invoices with{" "}
             <span className="bg-gradient-hero bg-clip-text text-transparent">
@@ -76,36 +71,12 @@ const Index = () => {
           </p>
         </div>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <FeatureCard
-            icon={<FileText className="w-8 h-8 text-primary" />}
-            title="Invoice Management"
-            description="Create, track, and manage all your invoices in one centralized dashboard with ease."
-          />
-          <FeatureCard
-            icon={<TrendingUp className="w-8 h-8 text-accent" />}
-            title="Real-time Analytics"
-            description="Get insights into your revenue, pending payments, and financial trends at a glance."
-          />
-          <FeatureCard
-            icon={<Bell className="w-8 h-8 text-primary" />}
-            title="Smart Alerts"
-            description="Never miss a payment deadline with automated email alerts and notifications."
-          />
-          <FeatureCard
-            icon={<Shield className="w-8 h-8 text-primary" />}
-            title="Secure & Reliable"
-            description="Bank-level security with automated backups to keep your data safe and accessible."
-          />
-          <FeatureCard
-            icon={<Zap className="w-8 h-8 text-primary" />}
-            title="Lightning Fast"
-            description="Built for speed and efficiency, so you can focus on what matters most."
-          />
-          <FeatureCard
-            icon={<CheckCircle className="w-8 h-8 text-accent" />}
-            title="Easy to Use"
-            description="Intuitive interface designed for professionals who value simplicity and power."
-          />
+          <FeatureCard icon={<FileText className="w-8 h-8 text-primary" />} title="Invoice Management" description="Create, track, and manage all your invoices in one centralized dashboard with ease." />
+          <FeatureCard icon={<TrendingUp className="w-8 h-8 text-accent" />} title="Real-time Analytics" description="Get insights into your revenue, pending payments, and financial trends at a glance." />
+          <FeatureCard icon={<Bell className="w-8 h-8 text-primary" />} title="Smart Alerts" description="Never miss a payment deadline with automated email alerts and notifications." />
+          <FeatureCard icon={<Shield className="w-8 h-8 text-primary" />} title="Secure & Reliable" description="Bank-level security with automated backups to keep your data safe and accessible." />
+          <FeatureCard icon={<Zap className="w-8 h-8 text-primary" />} title="Lightning Fast" description="Built for speed and efficiency, so you can focus on what matters most." />
+          <FeatureCard icon={<CheckCircle className="w-8 h-8 text-accent" />} title="Easy to Use" description="Intuitive interface designed for professionals who value simplicity and power." />
         </div>
       </section>
 
@@ -135,20 +106,23 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
-const FeatureCard = ({ icon, title, description }: { icon: React.ReactNode; title: string; description: string }) => {
-  return (
-    <div className="bg-card rounded-xl p-8 border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all group">
+const FeatureCard = ({
+  icon,
+  title,
+  description
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) => {
+  return <div className="bg-card rounded-xl p-8 border border-border/50 hover:border-primary/30 hover:shadow-lg transition-all group">
       <div className="mb-4 bg-accent/10 w-16 h-16 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform shadow-sm">
         {icon}
       </div>
       <h4 className="text-xl font-semibold mb-3">{title}</h4>
       <p className="text-muted-foreground leading-relaxed">{description}</p>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;

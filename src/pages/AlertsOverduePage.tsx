@@ -69,9 +69,14 @@ const AlertsOverduePage = () => {
           <Button
             onClick={async () => {
               try {
-                const { error } = await supabase.rpc('send_test_alert_email', { to_email: '2324006@saec.ac.in' });
+                const { data, error } = await supabase.functions.invoke('send-invoice-alert', {
+                  body: { to_email: '2324006@saec.ac.in' }
+                });
                 if (error) throw error;
-                toast({ title: 'Email sent', description: 'Test alert email has been sent.' });
+                toast({ 
+                  title: 'Email sent successfully', 
+                  description: `Sent invoice alert to 2324006@saec.ac.in` 
+                });
               } catch (e: any) {
                 toast({ title: 'Failed to send email', description: e.message, variant: 'destructive' });
               }

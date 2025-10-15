@@ -1,1 +1,4 @@
 project_id = "lerfbkaqankndccfopqf"
+
+[functions.send-invoice-alert]
+verify_jwt = false

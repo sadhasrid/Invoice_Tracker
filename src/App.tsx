@@ -14,10 +14,7 @@ import DashboardPage from "./pages/DashboardPage";
 import InvoicesPage from "./pages/InvoicesPage";
 import CreateInvoicePage from "./pages/CreateInvoicePage";
 import SettingsPage from "./pages/SettingsPage";
-import ManagementDashboardPage from "./pages/ManagementDashboardPage";
 import CalendarPage from "./pages/CalendarPage";
-import SupplierMatrixPage from "./pages/SupplierMatrixPage";
-import AlertsOverduePage from "./pages/AlertsOverduePage";
 
 const queryClient = new QueryClient();
 
@@ -65,34 +62,10 @@ const App = () => (
               }
             />
             <Route
-              path="/management"
-              element={
-                <ProtectedRoute>
-                  <ManagementDashboardPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
               path="/calendar"
               element={
                 <ProtectedRoute>
                   <CalendarPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/suppliers"
-              element={
-                <ProtectedRoute>
-                  <SupplierMatrixPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/alerts"
-              element={
-                <ProtectedRoute>
-                  <AlertsOverduePage />
                 </ProtectedRoute>
               }
             />

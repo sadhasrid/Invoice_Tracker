@@ -6,6 +6,7 @@ import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { toast } from '@/hooks/use-toast';
 import { Invoice } from './Dashboard';
+import { TrendingUp } from 'lucide-react';
 
 const DashboardPage = () => {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
@@ -64,13 +65,20 @@ const DashboardPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-6">
-        <div>
-          <h1 className="text-3xl font-bold">Dashboard</h1>
-          <p className="text-muted-foreground">Welcome back! Here's an overview of your invoices.</p>
+      <div className="space-y-8">
+        <div className="flex items-center gap-3">
+          <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center shadow-md">
+            <TrendingUp className="w-6 h-6 text-primary-foreground" />
+          </div>
+          <div>
+            <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+            <p className="text-muted-foreground">
+              Welcome back! Here's an overview of your invoices.
+            </p>
+          </div>
         </div>
         <DashboardStats invoices={invoices} />
-        <Card>
+        <Card className="shadow-sm border-border/50">
           <CardHeader>
             <CardTitle>Recent Activity</CardTitle>
           </CardHeader>
@@ -82,7 +90,7 @@ const DashboardPage = () => {
             ) : (
               <div className="space-y-4">
                 {invoices.slice(0, 5).map((invoice) => (
-                  <div key={invoice.id} className="flex items-center justify-between border-b pb-2">
+                  <div key={invoice.id} className="flex items-center justify-between border-b border-border/50 pb-4 last:border-0 last:pb-0">
                     <div>
                       <p className="font-medium">{invoice.clientName}</p>
                       <p className="text-sm text-muted-foreground">{invoice.invoiceNumber}</p>

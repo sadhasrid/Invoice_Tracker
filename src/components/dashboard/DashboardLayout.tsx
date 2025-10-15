@@ -8,14 +8,14 @@ export const DashboardLayout = ({ children }: { children: React.ReactNode }) => 
 
   return (
     <SidebarProvider>
-      <div className="min-h-screen flex w-full">
+      <div className="min-h-screen flex w-full bg-background">
         <AppSidebar />
         <div className="flex-1 flex flex-col">
-          <header className="h-16 border-b bg-card flex items-center justify-between px-6">
+          <header className="h-16 border-b border-border/50 bg-card/80 backdrop-blur-sm flex items-center justify-between px-6 sticky top-0 z-40 shadow-sm">
             <SidebarTrigger />
             <ProfileNotifications />
           </header>
-          <main className="flex-1 p-6 bg-background">
+          <main className="flex-1 p-6 md:p-8 bg-gradient-to-br from-background via-background to-secondary/10">
             {children}
           </main>
         </div>
